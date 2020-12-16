@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// Tail Recursion
 // Print on Ascent
 void f1(int n) {
     if (n > 0) {
@@ -8,6 +9,7 @@ void f1(int n) {
     }
 }
 
+// Head Recursion
 // Print on Return/Descent
 void f2(int n) {
     if (n > 0) {
