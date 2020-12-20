@@ -12,6 +12,9 @@ int f1(int n) {
 
 int main() {
     int a = 5;
+
+    printf("%d", f1(a));
+    printf("\n");
     printf("%d", f1(a));
 
     return 0;
