@@ -3,38 +3,44 @@
 
 using namespace std;
 
+template <class T>
 class Matrix {
     private:
         int rows;
         int cols;
-        int *ptr;
+        T *ptr;
+
     public:
         Matrix(int rows, int cols);
 
-        int sum();
-        int get(int row, int col);
-        void set(int row, int col, int value);
-        void fill(int val);
+        T sum();
+        T get(int row, int col);
+        void set(int row, int col, T value);
+        void fill(T val);
         void print();
 
         ~Matrix();
 };
 
-Matrix::Matrix(int rows, int cols) {
+template <class T>
+Matrix<T>::Matrix(int rows, int cols) {
     this->rows = rows;
     this->cols = cols;
-    ptr = (int *)malloc(sizeof(int) * rows * cols);
+    ptr = (T *)malloc(sizeof(T) * rows * cols);
 }
 
-int Matrix::get(int row, int col) {
+template <class T>
+T Matrix<T>::get(int row, int col) {
     return *(ptr + (row * cols) + col);
 }
 
-void Matrix::set(int row, int col, int val) {
+template <class T>
+void Matrix<T>::set(int row, int col, T val) {
     *(ptr + (row * cols) + col) = val;
 }
 
-void Matrix::fill(int val) {
+template <class T>
+void Matrix<T>::fill(T val) {
     int i, j;
     for (i = 0; i < rows; i++) {
         for (j = 0; j < cols; j++) {
@@ -43,25 +49,28 @@ void Matrix::fill(int val) {
     }
 }
 
-void Matrix::print() {
+template <class T>
+void Matrix<T>::print() {
     int i, j;
 
     for (i = 0; i < rows; i++) {
-        printf("row %d: ", i);
+        cout << "row " <<  i << ": ";
         for (j = 0; j < cols; j++) {
-            printf("%d ", this->get(i, j));
+            cout << this->get(i, j) << ' ';
         }
-        printf("\n");
+        cout << '\n';
     }
 }
 
-Matrix::~Matrix() {
+template <class T>
+Matrix<T>::~Matrix() {
     free(ptr);
 }
 
-int Matrix::sum() {
+template <class T>
+T Matrix<T>::sum() {
     int i;
-    int sum = 0;
+    T sum = 0;
 
     for (i = 0; i < rows * cols; i++) {
         sum += *(ptr + i);
@@ -71,22 +80,22 @@ int Matrix::sum() {
 }
 
 void test_Matrix() {
-    Matrix m(5, 5);
+    Matrix<float> m(5, 5);
 
-    m.fill(0);
-    m.fill(7);
-    
-    m.set(0, 0, 4);
+    m.fill(0.7);
+
+    m.set(0, 0, 4.3);
     cout << m.get(0, 0) << '\n';
-    m.set(1, 1, 3);
+
+    m.set(1, 1, 3.0);
     cout << m.get(1, 1) << '\n';
 
-    m.fill(2);
     cout << "sum : " << m.sum() << '\n';
 
     m.print();
 
     printf("test complete");
+
     return;
 }
 
