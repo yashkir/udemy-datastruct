@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 double taylor(double x, int n) {
-    double a = x / n;
+    double a = 1;
 
-    for (n--; n > 0; n--) {
-        a = (a + 1) * (x / n);
+    for (; n > 0; n--) {
+        a = 1 + a * (x / n);
     }
     a = (a + 1);
 
