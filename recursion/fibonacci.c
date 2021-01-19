@@ -48,5 +48,5 @@ int main() {
     printf("Fib of %d is %d\n", x, fib(x));
 
     mfib_init();
-    printf("MFib of %d is %d\n", x, mfib(x));
+    printf("MFib of %d is %ld\n", x, mfib(x));
 }
